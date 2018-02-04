@@ -49,7 +49,7 @@ import { Component, OnInit } from '@angular/core';
       <div class="col-md-3 span1_of_4">
         <h4>account</h4>
         <ul class="f_nav">
-          <li><a href="account.html">login</a></li>
+          <li><a href="/login">login</a></li>
           <li><a href="register.html">create an account</a></li>
           <li><a href="#">create wishlist</a></li>
           <li><a href="checkout.html">my shopping bag</a></li>

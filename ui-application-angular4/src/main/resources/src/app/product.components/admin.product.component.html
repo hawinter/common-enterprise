@@ -1,0 +1,169 @@
+<div class="product-creation">
+    <div class="container">
+        <div class="dreamcrub">
+            <ul class="breadcrumbs">
+                <li class="home">
+                    <a href="/home" title="Go to Home Page">Admin</a>&nbsp;
+                    <span>&gt;</span>
+                </li>
+                <li class="women">
+                    Product management
+                </li>
+            </ul>
+            <ul class="previous">
+                <li>
+                    <a href="/home">Back to Previous Page</a>
+                </li>
+            </ul>
+            <div class="clearfix"></div>
+        </div>
+        <div class="product-creation-form">
+            <div [hidden]="created">
+                <div class="product-creation-info">
+                    <h3>PRODUCT CREATION</h3>
+                </div>
+                <form #productCreationForm="ngForm">
+                    <div class="product-creation-left">
+                        <input id="name" type="text" placeholder="Name must be unique" required [(ngModel)]="product.name" name="name" #name="ngModel">
+                        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+                            Name is required
+                        </div>
+
+                        <select multiple  id="category" required [(ngModel)]="product.categoryIds" name="categoryIds" #categoryIds="ngModel">
+                            <option value="" disabled selected>Select category</option>
+                            <option *ngFor="let ctg of categories" [value]="ctg.id">{{ctg.name}}</option>
+                        </select>
+                        <div [hidden]="categoryIds.valid || categoryIds.pristine" class="alert alert-danger">
+                            Category is required
+                        </div>
+
+                        <input id="price" type="text" placeholder="Price" required [(ngModel)]="product.price" name="price" #price="ngModel">
+                        <div [hidden]="price.valid || price.pristine" class="alert alert-danger">
+                            Price is required
+                        </div>
+
+                        <input id="price-ctv1" type="text" placeholder="Price CTV 1" required [(ngModel)]="product.priceCtv1" name="priceCtv1" #priceCtv1="ngModel">
+                        <div [hidden]="priceCtv1.valid || priceCtv1.pristine" class="alert alert-danger">
+                            Price for CTV 1 is required
+                        </div>
+
+                        <input id="price-ctv2" type="text" placeholder="Price CTV 2" required [(ngModel)]="product.priceCtv2" name="priceCtv2" #priceCtv2="ngModel">
+                        <div [hidden]="priceCtv2.valid || priceCtv2.pristine" class="alert alert-danger">
+                            Price for CTV2 is required
+                        </div>
+
+                        <input id="price-ctv3" type="text" placeholder="Price CTV 3" required [(ngModel)]="product.priceCtv3" name="priceCtv3" #priceCtv3="ngModel">
+                        <div [hidden]="priceCtv3.valid || priceCtv3.pristine" class="alert alert-danger">
+                            Price for CTV3 is required
+                        </div>
+
+                        <select id="made-in" required [(ngModel)]="product.madeIn" name="madeIn" #madeIn="ngModel">
+                            <option value="" disabled selected>Select made in</option>
+                            <option *ngFor="let madeIn of madeIns" [value]="madeIn">{{madeIn}}</option>
+                        </select>
+                        <div [hidden]="madeIn.valid || madeIn.pristine" class="alert alert-danger">
+                            Made in is required
+                        </div>
+
+                        <input id="color" type="text" placeholder="Color" required [(ngModel)]="product.color" name="color" #color="ngModel">
+                        <div [hidden]="color.valid || color.pristine" class="alert alert-danger">
+                            Color is required
+                        </div>
+
+                        <select id="size" required [(ngModel)]="product.size" name="size" #size="ngModel">
+                            <option value="" disabled selected>Select size</option>
+                            <option *ngFor="let size of sizes" [value]="size">{{size}}</option>
+                        </select>
+                        <div [hidden]="size.valid || size.pristine" class="alert alert-danger">
+                            Size is required
+                        </div>
+                        <!-- <div class="form-group">
+                        <label for="exampleFormControlFile1">Example file input</label>
+                        <input type="file" class="form-control-file" id="exampleFormControlFile1">
+                        </div>
+                        -->
+                        <input id="tag" type="text" placeholder="Tags separated by ' , '" [(ngModel)]="product.tags" name="tag" #tag="ngModel">
+                    </div>
+                    <div class="product-creation-right">
+                        <textarea id="short-desc" placeholder="Short Description" required [(ngModel)]="product.shortDesc" name="shortDesc" #shortDesc="ngModel"></textarea>
+                        <div [hidden]="shortDesc.valid || shortDesc.pristine" class="alert alert-danger">
+                            Short description is required
+                        </div>
+
+                        <textarea placeholder="Full Information" [(ngModel)]="product.fullInformation" name="fullInformation" #fullInformation="ngModel"></textarea>
+
+                        <textarea placeholder="Specifications" [(ngModel)]="product.specifications" name="specifications" #specifications="ngModel"></textarea>
+                    </div>
+                    <div class="clearfix"></div>
+                    <input type="submit" value="CREATE" (click)="onCreate()" [disabled]="!productCreationForm.form.valid">
+                </form>
+            </div>
+            <div [hidden]="!created">
+                <div class="product-creation-info">
+                    <h3>PLEASE CONFIRM BEFORE SUBMITTING</h3>
+                </div>
+                <div class="product-creation-left">
+                    <div class="row">
+                        <div class="col-xs-3">Name</div>
+                        <div class="col-xs-9  pull-left">{{ product.name }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Category</div>
+                        <div class="col-xs-9  pull-left">
+                            <span *ngFor="let ctgId of product.categoryIds">{{categories[ctgId-1].name}},</span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Price</div>
+                        <div class="col-xs-9  pull-left">{{ product.price }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Price CTV1</div>
+                        <div class="col-xs-9  pull-left">{{ product.priceCtv1 }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Price CTV2</div>
+                        <div class="col-xs-9  pull-left">{{ product.priceCtv2 }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Price CTV3</div>
+                        <div class="col-xs-9  pull-left">{{ product.priceCtv3 }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Made in</div>
+                        <div class="col-xs-9  pull-left">{{ product.madeIn }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Color</div>
+                        <div class="col-xs-9  pull-left">{{ product.color }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Size</div>
+                        <div class="col-xs-9  pull-left">{{ product.size }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Tag</div>
+                        <div class="col-xs-9  pull-left">{{ product.tags }}</div>
+                    </div>
+                </div>
+                <div class="product-creation-right">
+                    <div class="row">
+                        <div class="col-xs-3">Short description</div>
+                        <div class="col-xs-9  pull-left">{{ product.shortDesc }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Full information</div>
+                        <div class="col-xs-9  pull-left">{{ product.fullInformation }}</div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-3">Specifications</div>
+                        <div class="col-xs-9  pull-left">{{ product.specifications }}</div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+                <br>
+                <input type="submit" value="SUBMIT" (click)="onSubmit()">
+            </div>
+        </div>
+    </div>
+</div>

@@ -28,9 +28,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.be.web.service.UserService;
-import com.be.web.util.Constant;
-import com.be.web.dto.CommonResponse;
-import com.be.web.dto.UserData;
+import com.be.web.common.util.Constants;
+import com.be.web.dto.request.UserData;
+import com.be.web.dto.response.CommonResponse;
 import com.be.web.entities.User;
 
 @Controller
@@ -80,7 +80,7 @@ public class UserController {
     		createdUser = userService.createUser(user);
 			reponse.setValue(createdUser);
 		} catch (Exception e) {
-			reponse.setResultCode(Constant.FAIL_CODE);
+			reponse.setResultCode(Constants.FAIL_CODE);
 			reponse.setMessage(e.getMessage());
 		}
     	
@@ -99,14 +99,14 @@ public class UserController {
     		updated = userService.updateUser(user);
     		
     		if(updated == null) {
-    			reponse.setResultCode(Constant.FAIL_CODE);
+    			reponse.setResultCode(Constants.FAIL_CODE);
     			reponse.setMessage("User not found");
     			return reponse;
     		}
     		
 			reponse.setValue(updated);
 		} catch (Exception e) {
-			reponse.setResultCode(Constant.FAIL_CODE);
+			reponse.setResultCode(Constants.FAIL_CODE);
 			reponse.setMessage(e.getMessage());
 		}
     	
@@ -123,14 +123,14 @@ public class UserController {
     		User user = userService.getUser(id);
     		
     		if(user == null) {
-    			reponse.setResultCode(Constant.FAIL_CODE);
+    			reponse.setResultCode(Constants.FAIL_CODE);
     			reponse.setMessage("User not found");
     			return reponse;
     		}
     		
 			reponse.setValue(user);
 		} catch (Exception e) {
-			reponse.setResultCode(Constant.FAIL_CODE);
+			reponse.setResultCode(Constants.FAIL_CODE);
 			reponse.setMessage(e.getMessage());
 		}
     	
@@ -148,14 +148,14 @@ public class UserController {
     		User user = userService.getUserByUserName(username);
     		
     		if(user == null) {
-    			reponse.setResultCode(Constant.FAIL_CODE);
+    			reponse.setResultCode(Constants.FAIL_CODE);
     			reponse.setMessage("User not found");
     			return reponse;
     		}
     		
 			reponse.setValue(user);
 		} catch (Exception e) {
-			reponse.setResultCode(Constant.FAIL_CODE);
+			reponse.setResultCode(Constants.FAIL_CODE);
 			reponse.setMessage(e.getMessage());
 		}
     	
@@ -163,31 +163,34 @@ public class UserController {
         
     }
     
-    @PreAuthorize("hasRole('ADMIN')")
-    //@PreAuthorize("hasAuthority('ADMIN')")
+    //@PreAuthorize("hasRole('ADMIN')")
     @RequestMapping(method = RequestMethod.GET, value = "/users", produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseBody
     public CommonResponse<List<User>> getListUsers(HttpServletRequest request, Principal principal) {
     	CommonResponse<List<User>> reponse = new CommonResponse<List<User>>();
     	
     	Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-    	String user = request.getUserPrincipal().getName();
-    	logger.info("Current usename: {}", user);
-    	logger.info("currrent user: {}", principal);
-    	logger.info("current roles: {}", auth.getAuthorities());
+    	if(request.getUserPrincipal() != null) {
+    		String user = request.getUserPrincipal().getName();
+        	logger.info("Current usename: {}", user);
+        	logger.info("currrent user: {}", principal);
+        	logger.info("current roles: {}", auth.getAuthorities());
+    	} else {
+    		logger.info("Unknow user");
+    	}
     	
     	try {
     		List<User> users = userService.getListUsers();
     		
     		if(users == null || users.isEmpty()) {
-    			reponse.setResultCode(Constant.FAIL_CODE);
+    			reponse.setResultCode(Constants.FAIL_CODE);
     			reponse.setMessage("No user found");
     			return reponse;
     		}
     		
 			reponse.setValue(users);
 		} catch (Exception e) {
-			reponse.setResultCode(Constant.FAIL_CODE);
+			reponse.setResultCode(Constants.FAIL_CODE);
 			reponse.setMessage(e.getMessage());
 		}
     	

@@ -9,7 +9,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.be.web.dto.UserData;
+import com.be.web.dto.request.UserData;
 import com.be.web.entities.Role;
 import com.be.web.entities.User;
 import com.be.web.repositories.RoleRepository;

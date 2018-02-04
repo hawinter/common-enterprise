@@ -1,0 +1,37 @@
+/.project
+/.settings/*
+
+/common-oauth-server/.settings/*
+/common-oauth-server/target/*
+/common-oauth-server/.classpath
+/common-oauth-server/.project
+
+/common-resource/.settings/*
+/common-resource/target/*
+/common-resource/.classpath
+/common-resource/.project
+
+/ui-application-angular4/.settings/*
+/ui-application-angular4/target/*
+/ui-application-angular4/.classpath
+/ui-application-angular4/.project
+ui-application-angular4/src/main/resources/npm-debug.log
+ui-application-angular4/src/main/resources/node/node.exe
+
+# compiled output
+/ui-application-angular4/src/main/resources/dist/*
+/ui-application-angular4/src/main/resources/tmp/*
+/ui-application-angular4/src/main/resources/dist/out-tsc/*
+/ui-application-angular4/src/main/resources/dist/out-tsc/app/*
+
+# dependencies
+/ui-application-angular4/src/main/resources/node_modules/*
+
+/ui-application-angular4/src/main/resources/node/*
+
+# IDE - VSCode
+/ui-application-angular4/src/main/resources/.vscode/*
+!/ui-application-angular4/src/main/resources/.vscode/settings.json
+!/ui-application-angular4/src/main/resources/.vscode/tasks.json
+!/ui-application-angular4/src/main/resources/.vscode/launch.json
+!/ui-application-angular4/src/main/resources/.vscode/extensions.json

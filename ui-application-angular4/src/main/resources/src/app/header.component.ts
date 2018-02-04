@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 			<div class="container">
 				<div class="header-top-left">
 					<ul>
-						<li><a href="account.html"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
+						<li><a href="/login"><span class="glyphicon glyphicon-user"> </span>Login</a></li>
 						<li><a href="register.html"><span class="glyphicon glyphicon-lock"> </span>Create an Account</a></li>			
 					</ul>
 				</div>
@@ -39,15 +39,15 @@ import { Component, OnInit } from '@angular/core';
             <span class="icon-bar"></span>
           </button>
             <div class="logo">
-              <h1><a href="index.html"><span>E</span> -Shop</a></h1>
+              <h1><a href="index.html"><span>T</span> -Shop</a></h1>
             </div>
         </div>
         <!--/.navbar-header-->
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-          <li><a href="index.html">Home</a></li>
-            <li class="dropdown">
+          <li><a href="/home">Home</a></li>
+          <!--  <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Men <b class="caret"></b></a>
               <ul class="dropdown-menu multi-column columns-3">
                 <div class="row">
@@ -156,9 +156,39 @@ import { Component, OnInit } from '@angular/core';
                   <div class="clearfix"></div>
                 </div>
               </ul>
-            </li>
-              <li><a href="typography.html">TYPO</a></li>
-              <li><a href="contact.html">CONTACT</a></li>
+            </li> 
+              <li><a href="typography.html">TYPO</a></li> -->
+              <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
+              <ul class="dropdown-menu multi-column columns-3">
+                <div class="row">
+                  <div class="col-sm-4">
+                    <ul class="multi-column-dropdown">
+                      <h6>ORDER</h6>
+                      <li><a href="/admin-order">Order management</a></li>
+                      <li><a href="/order-summary">Order summary</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-4">
+                    <ul class="multi-column-dropdown">
+                      <h6>PRODUCT</h6>
+                      <li><a href="/admin-product">Product management</a></li>
+                      <li><a href="/admin-product-summary">Product summary</a></li>
+                    </ul>
+                  </div>
+                  <div class="col-sm-4">
+                  <ul class="multi-column-dropdown">
+                    <h6>USER</h6>
+                    <li><a href="/user-management">User management</a></li>
+                    </ul>
+                  </div>
+                  <div class="clearfix"></div>
+                </div>
+              </ul>
+            </li> 
+            <li><a href="/product">PRODUCT</a></li>
+            <li><a href="/order">ORDER</a></li>
+            <li><a href="contact.html">CONTACT</a></li>
           </ul>
         </div>
         <!--/.navbar-collapse-->

@@ -2,7 +2,7 @@ package com.be.web.service;
 
 import java.util.List;
 
-import com.be.web.dto.UserData;
+import com.be.web.dto.request.UserData;
 import com.be.web.entities.User;
 
 public interface UserService {
